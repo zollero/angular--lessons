@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Angular scope</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div ng-controller="ctrl">
+        <h2>{{hello.name}}</h2>
+        <h2>{{hello.word}}</h2>
+    </div>
+    <div ng-controller="FirstController">
+        <h4>The simplest adding machine ever</h4>
+        <button ng-click="add(1)">Add</button>
+        <button ng-click="subtract(1)">Subtract</button>
+        <h4>Current count: {{ counter }}</h4>
+    </div>
+    <div ng-controller="ParentController">
+        <div ng-controller="ChildController">
+            <button ng-click="sayHello()">Say hello</button>
+        </div>
+        <h4>{{ person }}</h4>
+    </div>
+    <div ng-controller="MyController">
+        <input ng-model="expr" type="text" placeholder="Enter an expression" >
+        <h2>{{ parsedValue }}</h2>
+    </div>
+
+    <div ng-controller="interpolateCtrl">
+        <input ng-model="to" type="email" placeholder="Recipient" >
+        <textarea ng-model="emailBody"></textarea>
+        <pre>
+            {{previewText}}
+        </pre>
+    </div>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../js/angular-scope.js"></script>
+</body>
+</html>
