@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InterpolateParser</title>
+</head>
+<body>
+    <div id="emailEditor">
+        <input ng-model="to" type="email" placeholder="Recipient">
+        <textarea ng-model="emailBody"></textarea>
+    </div>
+    <div id="emailPreview">
+        <pre>
+            _ previewText _
+            {{previewText}}
+        </pre>
+    </div>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../js/emailParser.js"></script>
+    <script type="text/javascript" src="../js/interpolateParse.js"></script>
+</body>
+</html>
