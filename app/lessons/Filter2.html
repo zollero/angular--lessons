@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Filter2</title>
+    <link rel="stylesheet" href="">
+</head>
+<body ng-controller="filterCtrl">
+    <div>
+        <p>json filter</p>
+        <p> {{ {'name': 'Ari', 'City': 'SanFrancisco'} | json }} </p>
+        <p>limit to</p>
+        <p> {{ 'San Francisco is very cloudy' | limitTo:2:3 }} </p>
+        <p> {{ "2313123" | number:2 }} </p>
+    </div>
+    <hr>
+    <div>
+        <input type="text" ng-model="inputVal">
+        <p>{{ inputVal | lowercase | capitalize }}</p>
+    </div>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../js/filter-test.js"></script>
+</body>
+</html>

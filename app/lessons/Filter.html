@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Filter</title>
+    <link rel="stylesheet" href="">
+</head>
+<body ng-controller="filterCtrl">
+    <div>
+        <p>全部大写： {{ doIt | uppercase }} </p>
+        <p>全部小写： {{ name }} </p>
+        <p>保留三位小数： {{ 12.754547 | number:3 }} （会四舍五入）</p>
+    </div>
+    <div>
+        <p>Angular 内置过滤器</p>
+        <ul>
+            <li>
+                <p>currency 货币：{{123 | currency}} </p>
+            </li>
+            <li>
+                <p>date 日期：（默认采用 mediumDate）</p>
+                <ul>
+                    <li>
+                        <p>本地化</p>
+                        <p>date:'medium' --> {{ today | date:'medium'}}</p>
+                        <p>date:'short' --> {{ today | date:'short'}}</p>
+                        <p>date:'fullDate' --> {{ today | date:'fullDate'}}</p>
+                        <p>date:'longDate' --> {{ today | date:'longDate'}}</p>
+                        <p>date:'mediumDate' --> {{ today | date:'mediumDate'}}</p>
+                        <p>date:'shortDate' --> {{ today | date:'shortDate'}}</p>
+                        <p>date:'mediumTime' --> {{ today | date:'mediumTime'}}</p>
+                        <p>date:'shortTime' --> {{ today | date:'shortTime'}}</p>
+                    </li>
+                    <li>
+                        <p>年份格式化</p>
+                        <p>四位年date:'yyyy' --> {{ today | date:'yyyy'}}</p>
+                        <p>两位年date:'yy' --> {{ today | date:'yy'}}</p>
+                        <p>一位年date:'y' --> {{ today | date:'y'}}</p>
+                    </li>
+                    <li>
+                        <p>月份格式化</p>
+                        <p>英文月份date:'MMMM' --> {{ today | date:'MMMM'}}</p>
+                        <p>英文月份简写date:'MMM' --> {{ today | date:'MMM'}}</p>
+                        <p>数字月份date:'MM' --> {{ today | date:'MM'}}</p>
+                        <p>一个月中的第几个月date:'M' --> {{ today | date:'M'}}</p>
+                    </li>
+                    <li>
+                        <p>日期格式化</p>
+                        <p>数字日期date:'dd' --> {{ today | date:'dd'}}</p>
+                        <p>一个月中的第几天date:'d' --> {{ today | date:'d'}}</p>
+                        <p>英文星期date:'EEEE' --> {{ today | date:'EEEE'}}</p>
+                        <p>英文星期简写date:'EEE' --> {{ today | date:'EEE'}}</p>
+                    </li>
+                    <li>
+                        <p>小时格式化</p>
+                        <p>24小时制数字小时date:'HH' --> {{ today | date:'HH'}}</p>
+                        <p>一天中的第几个小时date:'H' --> {{ today | date:'H'}}</p>
+                        <p>12小时制数字小时date:'hh' --> {{ today | date:'hh'}}</p>
+                        <p>上午或下午的第几个小时date:'h' --> {{ today | date:'h'}}</p>
+                    </li>
+                    <li>
+                        <p>分钟格式化</p>
+                        <p>数字分钟数date:'mm' --> {{ today | date:'mm'}}</p>
+                        <p>一个小时中的第几分钟date:'m' --> {{ today | date:'m'}}</p>
+                    </li>
+                    <li>
+                        <p>秒数格式化</p>
+                        <p>数字秒数date:'ss' --> {{ today | date:'ss'}}</p>
+                        <p>一分钟内的第几秒date:'s' --> {{ today | date:'s'}}</p>
+                        <p>毫秒数date:'sss' --> {{ today | date:'sss'}}</p>
+                    </li>
+                    <li>
+                        <p>字符格式化</p>
+                        <p>上下午标识date:'a' --> {{ today | date:'a'}}</p>
+                        <p>四位时区标识date:'Z' --> {{ today | date:'Z'}}</p>
+                    </li>
+                    <li>
+                        <p>自定义日期格式</p>
+                        <p>date:'MMMd, y' --> {{ today | date:'MMMd, y'}}</p>
+                        <p>date:'EEEE, d, M' --> {{ today | date:'EEEE, d, M'}}</p>
+                        <p>date:'hh:mm:ss.sss' --> {{ today | date:'hh:mm:ss.sss'}}</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../js/filter-test.js"></script>
+</body>
+</html>
