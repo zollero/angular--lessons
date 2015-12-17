@@ -1,7 +1,7 @@
 angular.module("emailParser", []).config(['$interploateProvider', function($interpolateProvider) {
     $interpolateProvider.startSymbol("_");
     $interpolateProvider.endSymbol("_");
-}]).factory('EmailParser', ['$interpolate', function($interpolate){
+}]).factory('EmailParser', function($interpolate){
     //处理解析的服务
     return {
         parse: function(text, context) {
@@ -9,4 +9,4 @@ angular.module("emailParser", []).config(['$interploateProvider', function($inte
             return template(context);
         }
     };
-}])
+});

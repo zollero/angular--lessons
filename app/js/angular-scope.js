@@ -46,3 +46,14 @@ myApp.controller('interpolateCtrl', ['$scope', '$interpolate', function($scope, 
         };
     });
 }]);
+
+myApp.controller("ctrl2", function($scope, $interpolate){
+    $scope.$watch("myTextarea", function(newVal, oldVal, scope){
+        var interpolatedFunc = $interpolate(newVal);
+        //(1)
+        // $scope.interpolatedValue = interpolatedFunc({myName: $scope.myName}); 
+        //(2)
+        $scope.interpolatedValue = interpolatedFunc(scope);        
+    });
+
+});
