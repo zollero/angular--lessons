@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angular内置指令</title>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css" media="screen">
+        .odd {
+            color: #FFFFFF;
+            background-color: #607D8B;
+        }
+        .even {
+            color: #FFFFFF;
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <hr>
+        <h3>ng-href</h3>
+        <a ng-href="{{ myHref }}">I'm feeling lucky, when I load</a>
+
+        <hr>
+        <h3>ng-src</h3>
+        <img ng-src="{{imgSrc}}" alt="">
+
+        <hr>
+        <h3>ng-controller</h3>
+        <div ng-controller="SomeController">
+            {{someModel.someValue}}
+            <button ng-click="someModel.someAction()">Communicate to child</button>
+            <div ng-controller="ChildController">
+                {{someModel.someValue}}
+                <button ng-click="someModel.childAction()">Communicate to parent</button>
+            </div>
+        </div>
+
+        <hr>
+        <h3>ng-controller</h3>
+        <div ng-controller="SomeController">
+            {{someBareValue}}
+            <button ng-click="someAction()">Communicate to child</button>
+            <div ng-controller="ChildController">
+                {{someBareValue}}
+                <button ng-click="childAction()">Communicate to parent</button>
+            </div>
+        </div>
+
+        <hr>
+        <h3>ng-repeat</h3>
+        <ul ng-controller="PeopleController">
+            <li ng-repeat="person in people" ng-class="{even: !$even, odd: !$odd}">
+                {{person.name}} lives in {{person.city}}
+            </li>
+        </ul>
+
+        <hr>
+        <h3>ng-init</h3>
+        <div ng-init="greeting='Hello'; person='World'">
+            {{greeting}} {{person}}
+        </div>
+
+        <hr>
+        <h3>ng-bind</h3>
+        <div ng-init="greeting2='Hello World!'">
+            <p ng-bind="greeting2"></p>
+        </div>
+        
+        <hr>
+        <h3>ng-cloak</h3>
+        <div ng-init="greeting3='Hello World!'">
+            <p ng-cloak>{{greeting3}}</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" charset="utf-8" defer>
+        angular.module("myApp", [])
+        .run(function($rootScope, $timeout){
+            $timeout(function() {
+                $rootScope.myHref = 'http://baidu.com';
+                // $rootScope.imgSrc = 'http://pic49.nipic.com/file/20141008/19641365_131105244270_2.png';
+            }, 2000);
+        }).controller('SomeController', ['$scope', function($scope){
+            $scope.someBareValue = 'hello computer';
+            $scope.someAction = function() {
+                $scope.someBareValue = 'hello human, from parent';
+            };
+
+            $scope.someModel = {
+                someValue: 'hello computer'
+            };
+            $scope.someModel.someAction = function() {
+                $scope.someModel.someValue = 'hello human, from parent';
+            };
+        }]).controller('ChildController', ['$scope', function($scope){
+            $scope.childAction = function() {
+                $scope.someBareValue = 'hello human, from child';
+            };
+
+            $scope.someModel.childAction = function() {
+                $scope.someModel.someValue = 'hello human, from child';
+            };
+        }]).controller('PeopleController', ['$scope', function($scope){
+            $scope.people = [
+                {name: "Ari", city: "San Francisco"},
+                {name: "Erik", city: "Seattle"}
+            ];
+        }])
+    </script>
+</body>
+</html>
