@@ -30,10 +30,10 @@
         <h3>ng-controller</h3>
         <div ng-controller="SomeController">
             {{someModel.someValue}}
-            <button ng-click="someModel.someAction()">Communicate to child</button>
+            <button ng-click="someModel.someAction()" class="btn btn-primary">Communicate to child</button>
             <div ng-controller="ChildController">
                 {{someModel.someValue}}
-                <button ng-click="someModel.childAction()">Communicate to parent</button>
+                <button ng-click="someModel.childAction()" class="btn btn-primary">Communicate to parent</button>
             </div>
         </div>
 
@@ -41,10 +41,10 @@
         <h3>ng-controller</h3>
         <div ng-controller="SomeController">
             {{someBareValue}}
-            <button ng-click="someAction()">Communicate to child</button>
+            <button ng-click="someAction()" class="btn btn-primary">Communicate to child</button>
             <div ng-controller="ChildController">
                 {{someBareValue}}
-                <button ng-click="childAction()">Communicate to parent</button>
+                <button ng-click="childAction()" class="btn btn-primary">Communicate to parent</button>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
         <div ng-init="greeting2='Hello World!'">
             <p ng-bind="greeting2"></p>
         </div>
-        
+
         <hr>
         <h3>ng-cloak</h3>
         <div ng-init="greeting3='Hello World!'">
