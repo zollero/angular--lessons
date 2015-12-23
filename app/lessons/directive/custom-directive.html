@@ -23,6 +23,15 @@
             <div my-inherit-scope-directive></div>
             <div my-directive></div>
         </div>
+
+        <hr>
+        <h3>transclude: 实现模块嵌套，只有当希望创建一个可以包含任意内容的指令时，才使用transclude:true</h3>
+        <div sidebox title="Links">
+            <ul>
+                <li>First link</li>
+                <li>Second link</li>
+            </ul>
+        </div>
     </div>
     <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -42,6 +51,20 @@
                 restrict: 'A',
                 scope: true,
                 template: 'Inside myDirective, isolate scope:{{myProperty}}'
+            }
+        }).directive("sidebox", function() {
+            return {
+                restrict: 'EA',
+                scope: {
+                    title: '@'
+                },
+                transclude: true,
+                template: '<div class="sidebox">\
+                    <div class="content">\
+                        <h2 class="header">{{title}}</h2>\
+                        <span class="content" ng-transclude></span>\
+                    </div>\
+                </div>'
             }
         })
     </script>
