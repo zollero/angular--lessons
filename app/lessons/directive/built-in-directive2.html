@@ -49,7 +49,7 @@
             <select ng-model="city" ng-options="city.name for city in cities" class="form-control">
                 <option value="">Choose City</option>
             </select>
-            <p ng-class="{'text-danger': city.name == null ,'text-success': city.name != null}">Best City: {{city.name || "Please select a city."}}</p>
+            <h4 ng-class="{'text-danger': city.name == null ,'text-success': city.name != null}">Best City: {{city.name || "Please select a city."}}</h4>
         </div>
 
         <hr>
@@ -61,7 +61,6 @@
             </div>
             <p>Number is: {{x}}</p>
         </div>
-
     </div>
     <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
     <script type="text/javascript" charset="utf-8" defer>
