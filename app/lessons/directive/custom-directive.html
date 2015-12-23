@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自定义指令</title>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <hr>
+        <h3>directive的隔离作用域：scope属性</h3>
+        <div ng-controller="MainController">
+            Outside myDirective: {{myProperty}}
+            <div my-directive ng-init="myProperty = 'wow, this is cool'">
+            </div>
+        </div>
+
+        <hr>
+        <h3>使用继承作用域和隔离作用域的对比</h3>
+        <div ng-init="myProperty='wow, this is cool.'">
+            Surrounding scope: {{myProperty}}
+            <div my-inherit-scope-directive></div>
+            <div my-directive></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        angular.module('myApp', [])
+        .controller('MainController', ['$scope', function($scope){
+            
+        }]).directive('myDirective', function() {
+            return {
+                restrict: 'A',
+                scope: {},//隔离作用域
+                // scope: true,//从父作用域继承并创建一个新的作用域对象
+                priority: 100,
+                template: '<div>Inside myDirective: {{ myProperty }}</div>'
+            }
+        }).directive('myInheritScopeDirective', function() {
+            return {
+                restrict: 'A',
+                scope: true,
+                template: 'Inside myDirective, isolate scope:{{myProperty}}'
+            }
+        })
+    </script>
+</body>
+</html>
