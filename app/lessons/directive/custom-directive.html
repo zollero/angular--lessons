@@ -64,7 +64,10 @@
                         <h2 class="header">{{title}}</h2>\
                         <span class="content" ng-transclude></span>\
                     </div>\
-                </div>'
+                </div>',
+                controller: function($log) {
+                    $log.log("Test");//输出到控制台
+                }
             }
         })
     </script>
