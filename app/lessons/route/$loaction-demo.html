@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Demo of $loaction</title>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
+  </head>
+  <body>
+    <div class="container" ng-controller="MainController">
+      <hr>
+      <h3>Location: {{loca}}</h3>
+    </div>
+    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript">
+      angular.module("myApp", ['ngRoute'])
+      .controller("MainController", ['$scope', '$location', function($scope, $location) {
+        $scope.loca = $location.path();
+      }])
+    </script>
+  </body>
+</html>

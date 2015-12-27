@@ -38,22 +38,25 @@
             redirectTo: '/'
         });
     }]).controller('HomeController', ['$scope', function($scope){
-        
+
     }]).controller('LoginController', ['$scope', function($scope){
-        
+
     }]).controller('DashboardController', ['$scope', function($scope){
-        
-    }]).controller('MainController', ['$scope', function($scope){
+
+    }]).controller('MainController', ['$scope', '$location', function($scope, $location){
         //路由功能需要在服务器中使用
         $scope.href = location.href.toString().substring(0, location.href.toString().lastIndexOf("/") + 1);
         $scope.toHome = function() {
-            location.href = $scope.href + '/';
+            // location.href = $scope.href + '/';
+            $location.path("/");
         }
         $scope.toLogin = function() {
-            location.href = $scope.href + 'login';
+            // location.href = $scope.href + 'login';
+            $location.path("/");
         }
         $scope.toDashboard = function() {
-            location.href = $scope.href + 'dashboard';
+            // location.href = $scope.href + 'dashboard';
+            $location.path("/");
         }
     }])
     </script>
