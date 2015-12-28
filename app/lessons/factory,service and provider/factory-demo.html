@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp.service">
+  <head>
+    <meta charset="utf-8">
+    <title>Factory Demo</title>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
+  </head>
+  <body>
+    <div class="container" ng-controller="ServiceController" class="form-group">
+      <hr>
+      <label for="username">Type in a GitHub username</label>
+      <input type="text" ng-model="username" value="" placeholder="Enter a Github username" class="form-control">
+      <ul>
+        <li ng-repeat="event in events">
+          {{event.actor.login}} : {{event.repo.name}}
+        </li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+    <script type="text/javascript">
+      angular.module("myApp.service", [])
+      .factory("githubService", function($http) {
+        var githubUrl = "http://api.github.com", githubUsername;
+        var runUserRequest = function(path) {
+          return $http({
+            method: "JSONP",
+            url: githubUrl + "/users/" +
+                  githubUsername + "/" +
+                  path + "?callback=JSON_CALLBACK"
+          });
+        }
+        return {
+          events: function() {
+            return runUserRequest("events");
+          },
+          setUsername: function(username) {
+            githubUsername = username;
+          },
+          getUsername: function() {
+            return githubUsername;
+          }
+        }
+      }).controller("ServiceController", function($scope, $timeout, githubService) {
+        var timeout, newUsername = $scope.username;
+        $scope.$watch("username", function(newUsername) {
+          githubService.setUsername(newUsername);
+          // console.log(githubService.getUsername());
+          if (newUsername) {
+            if (timeout) $timeout.cancel(timeout);
+            timeout = $timeout(function() {
+              githubService.events().success(function(data, status, headers) {
+                $scope.events = data.data;
+              });
+            }, 350);
+          } else {
+            $scope.events = [];
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
