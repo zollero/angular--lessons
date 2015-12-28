@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>路由模式-angular-route</title>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
+  </head>
+  <body>
+    <!-- angular 默认使用标签模式来进行路由 -->
+    <!-- 当在HTML5模式的AngularJS中写链接时，永远不要使用相对路径。
+         如果你的应用是在根路径中加载的，这不会有什么问题,但是如果是在其他路径中,
+         AngularJS应用就无法正确处理路由了. -->
+    <!-- 另一个选择是在HTML文档的head中用<base>标签来指定应用的基础URL：
+          <base href="/base/url" /> -->
+    div.container
+
+    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript">
+      angular.module("myApp", ['ngRoute'])
+      .config(['$locationProvider', function($locationProvider) {
+        $locationProvider.html5Mode(false);//启用标签模式
+        $locationProvider.hashPrefix('!');//配置URL中的标签前缀，如：http://yoursite.com/#!/inbox/all
+      }])
+    </script>
+  </body>
+</html>
