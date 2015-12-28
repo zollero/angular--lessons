@@ -6,12 +6,23 @@
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
   </head>
   <body>
-
+    <div class='container'>
+      <hr>
+      <h3>$injector API</h3>
+      <h4>具体参考：<a href="http://docs.angularjs.cn/api/auto/service/$injector" target="_blank">Angular API#$injector</a></h4>
+      <ul>
+        <li>annotate()</li>
+        <li>get()</li>
+        <li>has()</li>
+        <li>instantiate()</li>
+        <li>invoke()</li>
+      </ul>
+    </div>
     <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
     <script type="text/javascript">
-      var injector = angular.injector(['ng', 'myApp']);
-      var params = injector.annotate(function($q, greeter) {});
-      console.log(params);
+      // var injector = angular.injector(['ng', 'myApp']);
+      // var params = injector.annotate(function($q, greeter) {});
+      // console.log(params);
     </script>
   </body>
 </html>
