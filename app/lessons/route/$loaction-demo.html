@@ -16,6 +16,9 @@
       angular.module("myApp", ['ngRoute'])
       .controller("MainController", ['$scope', '$location', function($scope, $location) {
         $scope.loca = $location.path();
+        //$location 服务不会重新加载整个页面，它只会单纯地改变URL。
+        //如果我们想重新加载整个页面，需要用$window服务来设置地址。
+        //$window.location.href = "/reload/page";
       }])
     </script>
   </body>
