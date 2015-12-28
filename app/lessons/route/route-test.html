@@ -37,12 +37,25 @@
         }).otherwise({
             redirectTo: '/'
         });
+    }]).run(['$rootScope', '$location', function($rootScope, $location) {
+      $rootScope.$on('$routeChangeStart', function(evt, current, previous) {
+        // console.log(evt);
+        // console.log(current);
+        // console.log(previous);
+      });
+      $rootScope.$on('$routeChangeSuccess', function(evt, current, previous) {
+        console.log(evt);
+        console.log(current);
+        console.log(previous);
+      });
+      $rootScope.$on('$routeChangeError', function(current, previous, rejection) {
+        console.log(current);
+        console.log(previous);
+        console.log(rejection);
+      });
     }]).controller('HomeController', ['$scope', function($scope){
-
     }]).controller('LoginController', ['$scope', function($scope){
-
     }]).controller('DashboardController', ['$scope', function($scope){
-
     }]).controller('MainController', ['$scope', '$location', function($scope, $location){
         //路由功能需要在服务器中使用
         $scope.href = location.href.toString().substring(0, location.href.toString().lastIndexOf("/") + 1);

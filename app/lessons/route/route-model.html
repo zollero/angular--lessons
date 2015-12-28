@@ -12,7 +12,15 @@
          AngularJS应用就无法正确处理路由了. -->
     <!-- 另一个选择是在HTML文档的head中用<base>标签来指定应用的基础URL：
           <base href="/base/url" /> -->
-    div.container
+    <div class="container">
+      <hr>
+      <h3>路由事件</h3>
+      <hr>
+      <h4>1. $routeChangeStart</h4>
+      <p>AngularJS在路由变化之前会广播$routeChangeStart事件。
+        在这一步中，路由服务会开始加载路由变化所需要的所有以来，
+        并且模板和resolve键中的promise也会被resolve</p>
+    </div>
 
     <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="../../bower_components/angular-route/angular-route.js"></script>
@@ -21,6 +29,25 @@
       .config(['$locationProvider', function($locationProvider) {
         $locationProvider.html5Mode(false);//启用标签模式
         $locationProvider.hashPrefix('!');//配置URL中的标签前缀，如：http://yoursite.com/#!/inbox/all
+      }]).run(['$rootScope', '$location', function($rootScope, $location) {
+        $rootScope.$on('$routeChangeStart', function(evt, current, previous) {
+          //监控$routeChangeStart事件
+          //evt: 原始的AngularJS evt对象
+          //current: 用户当前所处的路由；
+          //pervious: 上一个路由（如果当前是第一个路由，则为underfined）
+        });
+        $rootScope.$on('$routeChangeSuccess', function(evt, current, previous) {
+          //参数说明  参考 $routeChangeStart
+        });
+        $rootScope.$on('$routeChangeError', function(current, previous, rejection) {
+          //current: 当前路由的信息；
+          //previous: 上一个路由的信息
+          //rejection: 被拒绝的promise的错误信息
+        });
+        $rootScope.$on('$routeUpdate',function() {
+          //AngularJS在reloadOnSearch属性被设置为false的情况下，重新使用某个控制器
+          //的实例时，会广播$routeUpdate事件。
+        })
       }])
     </script>
   </body>
