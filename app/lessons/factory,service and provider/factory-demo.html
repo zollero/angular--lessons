@@ -12,7 +12,7 @@
       <input type="text" ng-model="username" value="" placeholder="Enter a Github username" class="form-control">
       <ul>
         <li ng-repeat="event in events">
-          {{event.actor.login}} : {{event.repo.name}}
+          {{event.actor.login}} : {{event.repo.name}} <--> {{event.created_at}} <--> {{event.type}}
         </li>
       </ul>
     </div>
