@@ -29,6 +29,22 @@
                   path + "?callback=JSON_CALLBACK"
           });
         }
+        // var githubDecorator = function($delegate, $log) {
+        //   var events = function(path) {
+        //     var startedAt = new Date();
+        //     var events = $delegate.events(path);
+        //     events.finally(function() {
+        //       $log.info("Fetching events took" + (new Date() - startedAt) + "ms");
+        //     });
+        //     return events;
+        //   };
+        //   return {
+        //     events: events
+        //   };
+        // }
+        // myApp.config(function($provide) {
+        //   $provide.decorator("githubService", githubDecorator);
+        // })
         return {
           events: function() {
             return runUserRequest("events");
@@ -44,7 +60,7 @@
         var timeout, newUsername = $scope.username;
         $scope.$watch("username", function(newUsername) {
           githubService.setUsername(newUsername);
-          // console.log(githubService.getUsername());
+          console.log(githubService.getUsername());
           if (newUsername) {
             if (timeout) $timeout.cancel(timeout);
             timeout = $timeout(function() {
