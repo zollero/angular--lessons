@@ -2,30 +2,26 @@
 <html ng-app="myApp">
   <head>
     <meta charset="utf-8">
-    <title>ngRepeat animate Demo</title>
+    <title>ngView animate demo</title>
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
-    <style media="screen" type="text/css">
-      /* css3 过渡 */
-      .fade-in.ng-enter, fade-in.ng-leave {
+    <style media="screen" type="text/css" rel="stylesheet">
+      .animateView.ng-enter, .animateView.ng-leave {
         transition: 2s linear all;
-        -webit-transition: 2s linear all;
+        -webkit-transition: 2s linear all;
       }
-      .fade-in.ng-enter {
+      .animateView.ng-enter {
         opacity: 0;
         color: green;
       }
-      .fade-in.ng-enter.ng-enter-active {
+      .animateView.ng-enter.ng-enter-active {
         opacity: 1;
         color: black;
       }
-      .fade-in.ng-leave {
-
-      }
-      .fade-in.ng-leave {
+      .animateView.ng-leave {}
+      .animateView.ng-leave.ng-leave-active {
         opacity: 0;
       }
 
-      /* css3 关键帧动画 */
       @keyframes animateView-enter {
         from {opacity: 0;}
         to {opacity: 1;}
@@ -42,11 +38,11 @@
         from {opacity: 1;}
         to {opacity: 0;}
       }
-      .fade-in.ng-enter {
+      .animateView.ng-enter {
         -webkit-animation: 2s animateView-enter;
         animation: 2s animateView-enter;
       }
-      .fade-in.ng-leave {
+      .animateView.ng-leave {
         -webkit-animation: 2s animateView-leave;
         animation: 2s animateView-leave;
       }
@@ -55,31 +51,25 @@
   <body>
     <div class="container">
       <hr>
-      <div ng-controller="HomeController" class="">
-        <ul>
-          <li class="fade-in" ng-repeat="r in roommates">
-            {{ r }}
-          </li>
-        </ul>
-      </div>
+      <a href="#/">Home</a>
+      <a href="#/two">Second view</a>
+      <a href="#/three">Third view</a>
+      <div class="animateView" ng-view></div>
     </div>
+
     <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="../../bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript">
-      angular.module("myApp", ['ngAnimate'])
-      .controller("HomeController", function($scope) {
-        $scope.roommates = [
-          'Ari', 'Q', 'Sean', 'Anand'
-        ];
-        setTimeout(function() {
-          $scope.roommates.push("Ginger");
-          $scope.$apply();
-
-          setTimeout(function() {
-            $scope.roommates.shift();
-            $scope.$apply();
-          }, 2000);
-        }, 1000);
+      angular.module("myApp", ['ngAnimate', 'ngRoute'])
+      .config(function($routeProvider) {
+        $routeProvider.when("/", {
+          template: '<h2>One</h2>'
+        }).when("/two", {
+          template: '<h2>Two</h2>'
+        }).when("/three", {
+          template: '<h2>Three</h2>'
+        });
       })
     </script>
   </body>
