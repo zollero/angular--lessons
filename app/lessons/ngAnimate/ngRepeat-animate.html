@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Animate Demo</title>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style media="screen" type="text/css">
+      /* css3 过渡 */
+      .fade-in.ng-enter, fade-in.ng-leave {
+        transition: 2s linear all;
+        -webit-transition: 2s linear all;
+      }
+      .fade-in.ng-enter {
+        opacity: 0;
+        color: green;
+      }
+      .fade-in.ng-enter.ng-enter-active {
+        opacity: 1;
+        color: black;
+      }
+      .fade-in.ng-leave {
+
+      }
+      .fade-in.ng-leave {
+        opacity: 0;
+      }
+
+      /* css3 关键帧动画 */
+      @keyframes animateView-enter {
+        from {opacity: 0;}
+        to {opacity: 1;}
+      }
+      @-webkit-keyframes animateView-enter {
+        from {opacity: 0;}
+        to {opacity: 1;}
+      }
+      @keyframes animateView-leave {
+        from {opacity: 1;}
+        to {opacity: 0;}
+      }
+      @-webkit-keyframes animateView-leave {
+        from {opacity: 1;}
+        to {opacity: 0;}
+      }
+      .fade-in.ng-enter {
+        -webkit-animation: 2s fade-in-enter-animation;
+        animation: 2s fade-in-enter-animation;
+      }
+      .fade-in.ng-leave {
+        -webkit-animation: 2s fade-in-leave-animation;
+        animation: 2s fade-in-leave-animation;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div ng-controller="HomeController" class="">
+        <ul>
+          <li class="fade-in" ng-repeat="r in roommates">
+            {{ r }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript">
+      angular.module("myApp", ['ngAnimate'])
+      .controller("HomeController", function($scope) {
+        $scope.roommates = [
+          'Ari', 'Q', 'Sean', 'Anand'
+        ];
+        setTimeout(function() {
+          $scope.roommates.push("Ginger");
+          $scope.$apply();
+
+          setTimeout(function() {
+            $scope.roommates.shift();
+            $scope.$apply();
+          }, 2000);
+        }, 1000);
+      })
+    </script>
+  </body>
+</html>
