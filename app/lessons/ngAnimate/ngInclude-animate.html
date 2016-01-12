@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>ngInclude Animate Demo</title>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style media="screen" type="text/css" rel="stylesheet">
+      .animateInclude.ng-enter, .animateInclude.ng-leave {
+        transition: 2s linear all;
+        -webkit-transition: 2s linear all;
+      }
+      .animateInclude.ng-enter {
+        opacity: 0;
+        color: green;
+      }
+      .animateInclude.ng-enter.ng-enter-active {
+        opacity: 1;
+        color: black;
+      }
+      .animateInclude.ng-leave {}
+      .animateInclude.ng-leave.ng-leave-active {
+        opacity: 0;
+      }
+
+      @keyframes animateInclude-enter {
+        from {opacity: 0;}
+        to {opacity: 1; color: green;}
+      }
+      @-webkit-keyframes animateInclude-enter {
+        from {opacity: 0;}
+        to {opacity: 1; color: green;}
+      }
+      @keyframes animateInclude-leave {
+        from {opacity: 1;}
+        to {opacity: 0; color: black;}
+      }
+      @-webkit-keyframes animateInclude-leave {
+        from {opacity: 1;}
+        to {opacity: 0; color: black;}
+      }
+      .animateInclude.ng-enter {
+        -webkit-animation: 2s animateInclude-enter;
+        animation: 2s animateInclude-enter;
+      }
+      .animateInclude.ng-leave {
+        -webkit-animation: 2s animateInclude-leave;
+        animation: 2s animateInclude-leave;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <hr>
+      <div class="" ng-init="template.url='/home.html'" ng-controller="HomeController">
+        <button type="button" name="button" ng-click="template.url='/home.html'">Home</button>
+        <button type="button" name="button" ng-click="template.url='/second.html'">Second</button>
+        <button type="button" name="button" ng-click="template.url='/third.html'">Third</button>
+        <div class="animateInclude" ng-include="template.url"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/ng-template" id="/home.html">
+      Home Template
+    </script>
+    <script type="text/ng-template" id="/second.html">
+      Second Template
+    </script>
+    <script type="text/ng-template" id="/third.html">
+      Third Template
+    </script>
+    <script type="text/javascript">
+      angular.module("myApp", ['ngAnimate'])
+      .controller("HomeController", function($scope) {
+
+      });
+    </script>
+  </body>
+</html>
