@@ -5,6 +5,7 @@
     <title>ngInclude Animate Demo</title>
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
     <style media="screen" type="text/css" rel="stylesheet">
+      /* 方法1 */
       .animateInclude.ng-enter, .animateInclude.ng-leave {
         transition: 2s linear all;
         -webkit-transition: 2s linear all;
@@ -22,7 +23,8 @@
         opacity: 0;
       }
 
-      @keyframes animateInclude-enter {
+      /* 方法2 */
+      /*@keyframes animateInclude-enter {
         from {opacity: 0;}
         to {opacity: 1; color: green;}
       }
@@ -45,7 +47,7 @@
       .animateInclude.ng-leave {
         -webkit-animation: 2s animateInclude-leave;
         animation: 2s animateInclude-leave;
-      }
+      }*/
     </style>
   </head>
   <body>

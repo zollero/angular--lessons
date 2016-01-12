@@ -5,7 +5,8 @@
     <title>ngView Animate demo</title>
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
     <style media="screen" type="text/css" rel="stylesheet">
-      .animateView.ng-enter, .animateView.ng-leave {
+      /* 方法1 */
+      /*.animateView.ng-enter, .animateView.ng-leave {
         transition: 2s linear all;
         -webkit-transition: 2s linear all;
       }
@@ -20,8 +21,9 @@
       .animateView.ng-leave {}
       .animateView.ng-leave.ng-leave-active {
         opacity: 0;
-      }
+      }*/
 
+      /* 方法2 */
       @keyframes animateView-enter {
         from {opacity: 0;}
         to {opacity: 1;}

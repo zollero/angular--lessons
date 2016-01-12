@@ -5,6 +5,7 @@
     <title>ngRepeat animate Demo</title>
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
     <style media="screen" type="text/css">
+      /* 方法1 */
       /* css3 过渡 */
       .fade-in.ng-enter, fade-in.ng-leave {
         transition: 2s linear all;
@@ -25,8 +26,9 @@
         opacity: 0;
       }
 
+      /* 方法2 */
       /* css3 关键帧动画 */
-      @keyframes animateView-enter {
+      /*@keyframes animateView-enter {
         from {opacity: 0;}
         to {opacity: 1;}
       }
@@ -49,7 +51,7 @@
       .fade-in.ng-leave {
         -webkit-animation: 2s animateView-leave;
         animation: 2s animateView-leave;
-      }
+      }*/
     </style>
   </head>
   <body>
