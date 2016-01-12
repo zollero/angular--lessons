@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
     <style media="screen" type="text/css" rel="stylesheet">
       /* 方法1 */
-      .animateSwitch.ng-enter, .animateSwitch.ng-leave {
+      /*.animateSwitch.ng-enter, .animateSwitch.ng-leave {
         -webkit-transition: 2s linear all;
         transition: 2s linear all;
       }
@@ -21,7 +21,7 @@
       .animateSwitch.ng-leave {}
       .animateSwitch.ng-leave.ng-leave-active {
         opacity: 0;
-      }
+      }*/
 
       /* 方法2 */
       /*@-webkit-keyframes animateSwitch-enter {
@@ -54,9 +54,9 @@
     <div class="container">
       <hr>
       <div ng-init="template='home'" ng-controller="HomeController">
-        <button type="button" name="button" ng-click="template='home'">Home</button>
-        <button type="button" name="button" ng-click="template='second'">Second</button>
-        <button type="button" name="button" ng-click="template='third'">Third</button>
+        <button type="button" name="button" ng-click="template='home'" class="btn btn-primary">Home</button>
+        <button type="button" name="button" ng-click="template='second'" class="btn btn-info">Second</button>
+        <button type="button" name="button" ng-click="template='third'" class="btn btn-success">Third</button>
         <div ng-switch="template">
           <div class="animateSwitch" ng-switch-when="home">
             <h1>Home</h1>
@@ -70,11 +70,30 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="../../bower_components/angular-animate/angular-animate.js"></script>
     <script type="text/javascript">
       angular.module("myApp", ['ngAnimate'])
-      .controller("HomeController", function($scope) {})
+      .controller("HomeController", function($scope) {
+      }).animation(".animateSwitch", function() {
+        //方法3
+        return {
+          enter: function(element, done) {
+            $(element).css({
+              opacity: 0,
+              color: 'black'
+            }, 2000);
+            $(element).animate({
+              opacity: 1,
+              color: 'green'
+            }, 2000, done);
+          },
+          leave: function(element, done) {
+            done();
+          }
+        }
+      })
     </script>
   </body>
 </html>
